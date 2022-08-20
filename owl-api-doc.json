@@ -2,14 +2,14 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "Owl API Docs",
+    "title": "Owls API",
     "license": {
       "name": "MIT"
     }
   },
   "servers": [
     {
-      "url": ""
+      "url": "https://owlsrcool.herokuapp.com/"
     }
   ],
   "paths": {
@@ -24,8 +24,8 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "Number of items to return at once (max 100)",
-            "required": "false",
+            "description": "How many items to return at one time (max 100)",
+            "required": false,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -34,10 +34,10 @@
         ],
         "responses": {
           "200": {
-            "description": "An array of owls",
+            "description": "A paged array of owls",
             "headers": {
               "x-next": {
-                "description": "A link to the next page of owls",
+                "description": "A link to the next page of responses",
                 "schema": {
                   "type": "string"
                 }
@@ -46,7 +46,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schema/Owls"
+                  "$ref": "#/components/schemas/Owls"
                 }
               }
             }
@@ -56,10 +56,119 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schema/Error"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a owl",
+        "operationId": "createOwls",
+        "tags": [
+          "owls"
+        ],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/owls/{owlId}": {
+      "get": {
+        "summary": "Info for a specific owl",
+        "operationId": "showOwlById",
+        "tags": [
+          "owls"
+        ],
+        "parameters": [
+          {
+            "name": "owlId",
+            "in": "path",
+            "required": true,
+            "description": "The id of the owl to retrieve",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Expected response to a valid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Owl"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Owl": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          }
+        }
+      },
+      "Owls": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Owl"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
           }
         }
       }
