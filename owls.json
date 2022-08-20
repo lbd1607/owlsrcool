@@ -1,0 +1,40 @@
+{
+  "owls": [
+    {
+      "id": 0,
+      "name": "Barred Owl",
+      "classification": "Strix varia",
+      "color": "Predominantly brown with white or gray.",
+      "size_range_inches": [20, 24],
+      "food": ["small mammals", "birds", "fish", "reptiles", "amphibians"],
+      "location": {
+          "nest_type": ["cavity"],
+          "migrates": false
+      }
+    },
+    {
+      "id": 1,
+      "name": "Great Horned Owl",
+      "classification": "Bubo virginianus",
+      "color": "Brown or grayish-brown.",
+      "size_range_inches": [20, 25],
+      "food": ["small mammals", "birds", "water fowl", "snakes", "insects"],
+      "location": {
+        "nest_type": ["cavity", "takeover"],
+        "migrates": false
+      }
+    },
+    {
+      "id": 2,
+      "name": "Easter Screech-Owl",
+      "classification": "Megascops asio",
+      "color": "Gray and white or red and white",
+      "size_range_inches": [9, 11],
+      "food": ["small mammals", "birds", "snakes", "insects"],
+      "location": {
+        "nest_type": ["cavity"],
+        "migrates": false
+      }
+    }
+  ]
+}
