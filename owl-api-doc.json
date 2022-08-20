@@ -64,7 +64,7 @@
         }
       },
       "post": {
-        "summary": "Create a owl",
+        "summary": "Create an owl",
         "operationId": "createOwls",
         "tags": [
           "owls"
